@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#wget -q -O node_exporter.sh https://gist.githubusercontent.com/dmitriyxch/5bf96793edb03a5b1931a8e572b334b7/raw/166df0a9fd987c03ef6edbcae7ae0c322f36b245/node_exporter.sh && chmod +x node_exporter.sh && sudo /bin/bash node_exporter.sh
+#wget -q -O node_exporter.sh https://raw.githubusercontent.com/dmitriyxch/node_exporter/main/node_exporter.sh && chmod +x node_exporter.sh && sudo /bin/bash node_exporter.sh
 
 version="${VERSION:-1.2.2}"
 arch="${ARCH:-linux-amd64}"
