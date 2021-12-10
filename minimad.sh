@@ -2,10 +2,8 @@
 set -e
 
 echo "Stopping minima service"
-systemctl stop minima
 systemctl stop minimad
 echo "Disabling minima service"
-systemctl disable minima
 systemctl disable minimad
 
 echo "Removing old minima service"
