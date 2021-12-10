@@ -8,7 +8,6 @@ systemctl disable minimad
 
 echo "Removing old minima service"
 rm /etc/systemd/system/minimad.service
-rm /etc/systemd/system/minima.service
 systemctl daemon-reload
 systemctl reset-failed
 
