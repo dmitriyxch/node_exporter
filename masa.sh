@@ -1,15 +1,25 @@
-systemctl stop masad
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y
+sudo addgroup p2p 
+sudo adduser masa --ingroup p2p --disabled-password --disabled-login --shell /usr/sbin/nologin --gecos ""
+ver="1.17.5"
+cd ~
+wget --inet4-only "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
+source ~/.profile
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
 sudo su masa -s /bin/bash
-. ~/.profile
-cd ~/masa-node-v1.0
-find data/geth/* -type f -not -name 'nodekey' -delete
-rm -f src/build/bin/*
-git pull
-cd ~/masa-node-v1.0/src
+cd ~
+source ~/.profile
+git clone https://github.com/masa-finance/masa-node-v1.0
+cd masa-node-v1.0/src
 make all
 
-
-cp -f /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
+sudo -i 
+cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
 
 sudo su masa -s /bin/bash
 cd ~
@@ -17,7 +27,7 @@ source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 
-
+sudo -i
 echo "============================================================"
 echo "Installation started"
 echo "============================================================"
@@ -25,7 +35,6 @@ echo "============================================================"
 echo "Your Node name:"
 echo "============================================================"
 read NODE_NAME
-
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
 Description=MASA
@@ -36,7 +45,7 @@ User=masa
 ExecStart=/usr/local/bin/geth \\
 --identity ${NODE_NAME} \\
 --datadir /home/masa/masa-node-v1.0/data \\
---bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@54.146.254.245:21000,enode://91a3c3d5e76b0acf05d9abddee959f1bcbc7c91537d2629288a9edd7a3df90acaa46ffba0e0e5d49a20598e0960ac458d76eb8fa92a1d64938c0a3a3d60f8be4@54.158.188.182:21000,enode://d87c03855093a39dced2af54d39b827e4e841fd0ca98673b2e94681d9d52d2f1b6a6d42754da86fa8f53d8105896fda44f3012be0ceb6342e114b0f01456924c@34.225.220.240:21000,enode://fcb5a1a8d65eb167cd3030ca9ae35aa8e290b9add3eb46481d0fbd1eb10065aeea40059f48314c88816aab2af9303e193becc511b1035c9fd8dbe97d21f913b9@52.1.125.71:21000 \\
+--bootnodes "enode://7612454dd41a6d13138b565a9e14a35bef4804204d92e751cfe2625648666b703525d821f34ffc198fac0d669a12d5f47e7cf15de4ebe65f39822a2523a576c4@81.29.137.40:30300" \\
 --emitcheckpoints \\
 --istanbul.blockperiod 10 \\
 --mine \\
@@ -58,8 +67,8 @@ Environment="PRIVATE_CONFIG=ignore"
 [Install]
 WantedBy=multi-user.target
 EOF
-
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
+
 sudo systemctl status masad
