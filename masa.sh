@@ -11,21 +11,25 @@ rm "go$ver.linux-amd64.tar.gz"
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
 source ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
+
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
 git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0/src
 make all
+exit
 
 sudo -i 
 cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
+exit
 
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
+exit
 
 sudo -i
 echo "============================================================"
@@ -67,6 +71,8 @@ Environment="PRIVATE_CONFIG=ignore"
 [Install]
 WantedBy=multi-user.target
 EOF
+exit
+
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
