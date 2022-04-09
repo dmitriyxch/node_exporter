@@ -23,7 +23,7 @@ cd masa-node-v1.0/src
 make all
 
 
-cp ~/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
+cp ~/masa-node-v1.0/src/build/bin/* /usr/local/bin
 
 
 cd ~
