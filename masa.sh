@@ -31,7 +31,7 @@ source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 
-sudo -i
+
 read NODE_NAME
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
