@@ -18,7 +18,7 @@ echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
 echo "5"
 sleep 5
 echo "6"
-sudo su masa -s /bin/bash
+sudo su masa
 echo "7"
 sleep 5
 cd ~
