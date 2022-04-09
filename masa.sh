@@ -5,6 +5,8 @@ sudo adduser masa --ingroup p2p --disabled-password --disabled-login --shell /us
 ver="1.17.5"
 cd ~
 wget --inet4-only "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sleep 10
+
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
@@ -12,6 +14,7 @@ echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
 source ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
 
+sleep 10
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
@@ -19,18 +22,18 @@ git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0/src
 make all
 exit
-
+sleep 10
 sudo -i 
 cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
 exit
-
+sleep 10
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 exit
-
+sleep 10
 sudo -i
 echo "============================================================"
 echo "Installation started"
@@ -72,7 +75,7 @@ Environment="PRIVATE_CONFIG=ignore"
 WantedBy=multi-user.target
 EOF
 exit
-
+sleep 10
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
