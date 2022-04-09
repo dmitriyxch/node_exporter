@@ -8,7 +8,7 @@ git pull
 cd ~/masa-node-v1.0/src
 make all
 
-sudo -i 
+
 cp -f /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
 
 sudo su masa -s /bin/bash
@@ -17,7 +17,7 @@ source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 
-sudo -i
+
 echo "============================================================"
 echo "Installation started"
 echo "============================================================"
