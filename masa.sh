@@ -1,20 +1,15 @@
-sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev jq build-essential make ncdu -y
 sudo addgroup p2p 
 sudo adduser masa --ingroup p2p --disabled-password --disabled-login --shell /usr/sbin/nologin --gecos ""
 ver="1.17.5"
 cd ~
 wget --inet4-only "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sleep 10
-
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
 source ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
-
-sleep 10
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
@@ -22,25 +17,16 @@ git clone https://github.com/masa-finance/masa-node-v1.0
 cd masa-node-v1.0/src
 make all
 exit
-sleep 10
 sudo -i 
 cp /home/masa/masa-node-v1.0/src/build/bin/* /usr/local/bin
 exit
-sleep 10
 sudo su masa -s /bin/bash
 cd ~
 source ~/.profile
 cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 exit
-sleep 10
 sudo -i
-echo "============================================================"
-echo "Installation started"
-echo "============================================================"
-echo "============================================================"
-echo "Your Node name:"
-echo "============================================================"
 read NODE_NAME
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
@@ -75,9 +61,8 @@ Environment="PRIVATE_CONFIG=ignore"
 WantedBy=multi-user.target
 EOF
 exit
-sleep 10
 sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
-
 sudo systemctl status masad
+journalctl -u masad -f
