@@ -7,16 +7,26 @@ wget --inet4-only "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 sleep 5
+echo "1"
 rm "go$ver.linux-amd64.tar.gz"
+echo "2"
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
+echo "3"
 source ~/.profile
+echo "4"
 echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> /home/masa/.profile
+echo "5"
 sleep 5
+echo "6"
 sudo su masa -s /bin/bash
+echo "7"
 sleep 5
 cd ~
+echo "8"
 source ~/.profile
+echo "9"
 git clone https://github.com/masa-finance/masa-node-v1.0
+echo "10"
 cd masa-node-v1.0/src
 make all
 exit
