@@ -18,8 +18,13 @@ cd $HOME/masa-node-v1.0
 geth --datadir data init ./network/testnet/genesis.json
 
 sudo -i
+echo "============================================================"
+echo "Installation started"
+echo "============================================================"
+echo "============================================================"
+echo "Your Node name:"
+echo "============================================================"
 read NODE_NAME
-Поменяйте "ProMint" на своё название ноды!
 
 tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
