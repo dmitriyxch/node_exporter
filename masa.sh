@@ -11,7 +11,7 @@ echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
 
 source ~/.profile
 
-echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/masa/.profile
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
 
 
 
@@ -42,7 +42,7 @@ Type=simple
 User=root
 ExecStart=/usr/local/bin/geth \\
 --identity ${NODE_NAME} \\
---datadir /home/masa/masa-node-v1.0/data \\
+--datadir /root/masa-node-v1.0/data \\
 --bootnodes "enode://7612454dd41a6d13138b565a9e14a35bef4804204d92e751cfe2625648666b703525d821f34ffc198fac0d669a12d5f47e7cf15de4ebe65f39822a2523a576c4@81.29.137.40:30300" \\
 --emitcheckpoints \\
 --istanbul.blockperiod 10 \\
