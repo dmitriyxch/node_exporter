@@ -4,3 +4,5 @@ sudo apt install nano
 sudo apt install netstat
 sudo apt install telnet
 sudo apt install git
+sudo apt install curl
+sudo apt install wget
