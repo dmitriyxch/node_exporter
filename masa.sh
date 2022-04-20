@@ -1,5 +1,6 @@
 echo y | sudo apt install apt-transport-https net-tools git mc sysstat atop curl tar wget clang pkg-config libssl-dev 
 echo y | apt install make
+echo y | apt install gcc
 ver="1.17.5"
 cd ~
 wget --inet4-only "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
