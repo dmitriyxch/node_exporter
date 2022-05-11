@@ -2,7 +2,7 @@ cd ~/pathfinder
 
 git fetch
 
-git checkout v0.1.8-alpha
+git checkout v0.1.9-alpha
 
 cargo build --release --bin pathfinder 
 
