@@ -5,7 +5,6 @@ wget -qO $HOME/massa.tar.gz "https://github.com/massalabs/massa/releases/downloa
 tar -xvf $HOME/massa.tar.gz; 
 rm -rf $HOME/massa.tar.gz
 chmod +x $HOME/massa/massa-node/massa-node 
-$HOME/massa/massa-client/massa-client
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n massa_password
 echo "$massa_password"
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/Massa/main/insert_variables.sh)
