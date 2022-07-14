@@ -32,6 +32,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable massad
 sudo systemctl restart massad
 
+source ~/.bash_profile
 massa_client
 wallet_generate_secret_key
 wallet_info
