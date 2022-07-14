@@ -35,5 +35,5 @@ sudo systemctl restart massad
 massa_client
 wallet_generate_secret_key
 wallet_info
-exit
+#exit
 massa_cli_client -a node_add_staking_secret_keys
