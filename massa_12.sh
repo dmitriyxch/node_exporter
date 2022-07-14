@@ -36,4 +36,4 @@ massa_client
 wallet_generate_secret_key
 wallet_info
 #exit
-massa_cli_client -a node_add_staking_secret_keys
+#massa_cli_client -a node_add_staking_secret_keys
