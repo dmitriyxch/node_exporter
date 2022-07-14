@@ -6,7 +6,6 @@ tar -xvf $HOME/massa.tar.gz;
 rm -rf $HOME/massa.tar.gz
 chmod +x $HOME/massa/massa-node/massa-node 
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n massa_password
-echo "$massa_password"
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/Massa/main/insert_variables.sh)
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/Massa/main/multi_tool.sh) -rb
 
