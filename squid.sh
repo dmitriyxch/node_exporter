@@ -9,8 +9,6 @@ read password
 
 printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
 
-source ~/.profile
-
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
 sudo echo "
@@ -60,10 +58,12 @@ refresh_pattern \/Release(|\.gpg)$ 0 0% 0 refresh-ims
 refresh_pattern \/InRelease$ 0 0% 0 refresh-ims
 refresh_pattern \/(Translation-.*)(|\.bz2|\.gz|\.xz)$ 0 0% 0 refresh-ims
 refresh_pattern .               0       20%     4320
-" > $HOME/squid.conf
+" > squid.conf
 
-sudo mv $HOME/squid.conf /etc/squid/squid.conf
+sudo mv squid.conf /etc/squid/squid.conf
 
 sudo systemctl restart squid
 sudo ufw allow 'Squid'
 
+echo "Your proxy ip:"
+dig +short myip.opendns.com @resolver4.opendns.com
