@@ -1,13 +1,20 @@
 sudo apt update
 echo "y" | sudo apt install squid
 
-echo "Enter username: "
-read username
+#echo "Enter username: "
+#read username
 
-echo "Enter password: "
-read password
+#echo "Enter password: "
+#read password
 
-printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
+echo "Your ip: "
+read ip
+
+printf "$ip" | sudo tee -a /etc/squid/allowed_ips.txt
+
+htpasswd -c /etc/squid3/passwd adm
+ 
+#printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
 
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
@@ -34,12 +41,22 @@ acl Safe_ports port 591         # filemaker
 acl Safe_ports port 777         # multiling http
 acl CONNECT method CONNECT
 
+
+#allow basic auth
 auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd
-auth_param basic realm proxy
+auth_param basic children 5
+auth_param basic realm Squid proxy-caching web server
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive off
 acl authenticated proxy_auth REQUIRED
 
 
+#allow ips from file
+acl allowed_ips src '/etc/squid/allowed_ips.txt'
+
+
 http_access allow localhost manager
+http_access allow allowed_ips
 include /etc/squid/conf.d/*
 http_access allow localhost
 http_access allow authenticated
@@ -49,11 +66,29 @@ http_access deny CONNECT !SSL_ports
 http_access deny all
 http_port 3128
 
+#hide proxy headers
 via off
-forwarded_for off
+forwarded_for delete
+request_header_access From deny all
+request_header_access Referer deny all
+request_header_access User-Agent deny all
+
 follow_x_forwarded_for deny all
 request_header_access X-Forwarded-For deny all
 header_access X_Forwarded_For deny all
+
+request_header_access From deny all
+request_header_access Server deny all
+request_header_access WWW-Authenticate deny all
+request_header_access Link deny all
+request_header_access Cache-Control deny all
+request_header_access Proxy-Connection deny all
+request_header_access X-Cache deny all
+request_header_access X-Cache-Lookup deny all
+request_header_access Via deny all
+request_header_access X-Forwarded-For deny all
+request_header_access Pragma deny all
+request_header_access Keep-Alive deny all
 
 coredump_dir /var/spool/squid
 refresh_pattern ^ftp:           1440    20%     10080
