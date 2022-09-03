@@ -9,6 +9,8 @@ read password
 
 printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
 
+source ~/.profile
+
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
 sudo echo "
