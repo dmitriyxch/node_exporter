@@ -11,8 +11,8 @@ printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squ
 
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
-cat <<EOF > /etc/squid/squid.conf
-acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 "this" network (LAN)
+sudo echo"
+acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 network (LAN)
 acl localnet src 10.0.0.0/8             # RFC 1918 local private network (LAN)
 acl localnet src 100.64.0.0/10          # RFC 6598 shared address space (CGN)
 acl localnet src 169.254.0.0/16         # RFC 3927 link-local (directly plugged) machines
@@ -57,7 +57,7 @@ refresh_pattern \/Release(|\.gpg)$ 0 0% 0 refresh-ims
 refresh_pattern \/InRelease$ 0 0% 0 refresh-ims
 refresh_pattern \/(Translation-.*)(|\.bz2|\.gz|\.xz)$ 0 0% 0 refresh-ims
 refresh_pattern .               0       20%     4320
-EOF
+" > /etc/squid/squid.conf
 
 sudo systemctl restart squid
 sudo ufw allow 'Squid'
