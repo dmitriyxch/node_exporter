@@ -59,6 +59,8 @@ refresh_pattern \/(Translation-.*)(|\.bz2|\.gz|\.xz)$ 0 0% 0 refresh-ims
 refresh_pattern .               0       20%     4320
 " > /etc/squid/squid.conf
 
+sudo mv ~/squid.conf /etc/squid/squid.conf
+
 sudo systemctl restart squid
 sudo ufw allow 'Squid'
 
