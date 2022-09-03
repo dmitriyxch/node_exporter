@@ -40,13 +40,14 @@ auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd
 auth_param basic realm proxy
 acl authenticated proxy_auth REQUIRED
 
-http_access deny !Safe_ports
-http_access deny CONNECT !SSL_ports
+
 http_access allow localhost manager
-http_access deny manager
 include /etc/squid/conf.d/*
 http_access allow localhost
 http_access allow authenticated
+http_access deny manager
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
 http_access deny all
 http_port 3128
 
