@@ -11,7 +11,7 @@ printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squ
 
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
-sudo echo "
+echo "
 acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 network (LAN)
 acl localnet src 10.0.0.0/8             # RFC 1918 local private network (LAN)
 acl localnet src 100.64.0.0/10          # RFC 6598 shared address space (CGN)
