@@ -40,3 +40,5 @@ sudo useradd -r -s /bin/false adm_dante
 sudo passwd adm_dante
 
 sudo systemctl restart danted.service
+
+systemctl status danted.service
