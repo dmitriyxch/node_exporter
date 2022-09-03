@@ -2,11 +2,11 @@ sudo apt update
 echo y | sudo apt install dante-server
 sudo rm /etc/danted.conf
 
-touch /var/log/dante.log
+sudo touch /var/log/dante.log
 
 echo "
 errorlog: syslog
-logoutput: syslog stdout /var/log/dante.log
+#logoutput: syslog stdout /var/log/dante.log
 user.privileged: root
 user.unprivileged: nobody
 
