@@ -49,6 +49,12 @@ http_access deny CONNECT !SSL_ports
 http_access deny all
 http_port 3128
 
+via off
+forwarded_for off
+follow_x_forwarded_for deny all
+request_header_access X-Forwarded-For deny all
+header_access X_Forwarded_For deny all
+
 coredump_dir /var/spool/squid
 refresh_pattern ^ftp:           1440    20%     10080
 refresh_pattern ^gopher:        1440    0%      1440
