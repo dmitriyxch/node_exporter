@@ -1,5 +1,5 @@
 sudo apt update
-echo "y" | sudo apt install squid
+echo "y" | sudo apt install apache2-utils squid  
 
 #echo "Enter username: "
 #read username
