@@ -12,7 +12,7 @@ read ip
 
 printf "$ip" | sudo tee -a /etc/squid/allowed_ips.txt
 
-htpasswd -c /etc/squid3/passwd adm
+sudo htpasswd -c /etc/squid3/passwd adm
  
 #printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
 
