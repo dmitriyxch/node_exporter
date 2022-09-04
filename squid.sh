@@ -12,7 +12,7 @@ read ip
 
 printf "$ip" | sudo tee -a /etc/squid/allowed_ips.txt
 
-sudo htpasswd -c /etc/squid3/passwd adm
+sudo htpasswd -c /etc/squid/passwd adm
  
 #printf "$username:$(openssl passwd -crypt '$password')\n" | sudo tee -a /etc/squid/htpasswd
 
@@ -43,7 +43,7 @@ acl CONNECT method CONNECT
 
 
 #allow basic auth
-auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/htpasswd
 auth_param basic children 5
 auth_param basic realm Squid proxy-caching web server
 auth_param basic credentialsttl 2 hours
