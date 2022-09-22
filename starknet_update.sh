@@ -2,7 +2,7 @@ cd ~/pathfinder
 
 git fetch
 
-git checkout v0.3.0-alpha
+git checkout v0.3.4
 
 
 
