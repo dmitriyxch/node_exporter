@@ -18,6 +18,7 @@ sudo htpasswd -c /etc/squid/passwd adm_dante
 
 sudo mv /etc/squid/squid.conf /etc/squid/squid.old.conf
 
+
 echo "
 acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 network (LAN)
 acl localnet src 10.0.0.0/8             # RFC 1918 local private network (LAN)
@@ -57,7 +58,7 @@ acl allowed_ips src '/etc/squid/allowed_ips.txt'
 
 http_access allow localhost manager
 http_access allow allowed_ips
-include /etc/squid/conf.d/*
+#include /etc/squid/conf.d/*
 http_access allow localhost
 http_access allow authenticated
 http_access deny manager
