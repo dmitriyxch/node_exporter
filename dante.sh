@@ -11,7 +11,7 @@ user.privileged: root
 user.unprivileged: nobody
 
 # The listening network interface or address.
-internal: 0.0.0.0 port=8000
+internal: 0.0.0.0 port=8111
 
 # The proxying network interface or address.
 external: eth0
@@ -34,7 +34,7 @@ socks pass {
 sudo mv danted.conf /etc/danted.conf
 
 
-sudo ufw allow 8000
+sudo ufw allow 8111
 
 sudo useradd -r -s /bin/false adm_dante
 sudo passwd adm_dante
